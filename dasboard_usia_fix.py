@@ -111,10 +111,10 @@ Status Tinggi     : {status_tinggi}
 
     # Simpan
     pdf.output("hasil_perkembangan.pdf")
+
 # -------------------------
-# -------------------------------
 # Konfigurasi halaman
-# -------------------------------
+# -------------------------
 st.set_page_config(page_title="Kalkulator Perkembangan Anak", layout="centered", page_icon="🧒")
 
 # -------------------------------
@@ -133,14 +133,8 @@ with st.sidebar:
 # Halaman: Kalkulator
 # -------------------------------
 if selected == "Kalkulator":
-    st.markdown("""
-        <h2 style='text-align: center; color: #4CAF50;'>📏 Kalkulator Perkembangan Anak</h2>
-        <p style='text-align: center; font-size: 18px;'>
-            👶👧👦 Alat bantu cerdas untuk mengevaluasi pertumbuhan anak usia 5 tahun ke atas.<br>
-            Masukkan data anak Anda, dan dapatkan hasil berat & tinggi ideal lengkap dengan rekomendasi!
-        </p>
-        <hr style='border-top: 1px dashed #ccc;'>
-    """, unsafe_allow_html=True)
+    st.markdown("""<h2 style='text-align: center; color: #4CAF50;'>📏 Kalkulator Perkembangan Anak</h2>""", unsafe_allow_html=True)
+    st.text("Masukkan data anak Anda, dan dapatkan hasil berat & tinggi ideal lengkap dengan rekomendasi!")
 
     nama = st.text_input("👤 Nama Anak")
     usia = st.number_input("📅 Usia Anak (tahun)", 5, 60, 5)
@@ -148,14 +142,11 @@ if selected == "Kalkulator":
     berat = st.number_input("⚖️ Berat Badan (kg)", 0.0, 100.0, 25.0)
     tinggi = st.number_input("📏 Tinggi Badan (cm)", 0.0, 200.0, 150.0)
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
-
     if st.button("🔍 Cek Ideal"):
         berat_ideal = hitung_berat_ideal(tinggi, jenis_kelamin)
         tinggi_ideal = tinggi
         status_berat, status_tinggi = saran_perbandingan(berat, berat_ideal, tinggi, tinggi_ideal)
-        col1, col2 = st.columns(2)
+        col1, col2 = st.columns([1, 1])
         with col1:
             st.metric("Berat Ideal", f"{berat_ideal:.2f} kg", f"{berat - berat_ideal:+.2f} kg")
         with col2:
@@ -163,9 +154,8 @@ if selected == "Kalkulator":
         st.subheader("📝 Kesimpulan")
         st.markdown(f"**{nama}**, usia **{usia} tahun**, memiliki berat badan **{status_berat}** dan tinggi badan **{status_tinggi}** dibandingkan dengan nilai ideal berdasarkan Indeks Broca.")
         st.session_state.hasil_input = {"nama": nama, "usia": usia, "berat": berat, "tinggi": tinggi, "jenis_kelamin": jenis_kelamin, "berat_ideal": berat_ideal}
-                # Tombol unduh sertifikat selalu tampil setelah hasil_input tersedia
+        
     if "hasil_input" in st.session_state:
-        # Buat PDF setiap kali session_state diperbarui
         buat_pdf(
             st.session_state.hasil_input["nama"],
             st.session_state.hasil_input["usia"],
@@ -193,7 +183,6 @@ if selected == "Kalkulator":
                 mime="application/pdf"
             )
 
-
 # -------------------------------
 # Halaman: Grafik
 # -------------------------------
@@ -204,7 +193,7 @@ elif selected == "Grafik":
         x = ["Ideal", "Anak"]
         y = [hasil["berat_ideal"], hasil["berat"]]
         fig, ax = plt.subplots()
-        ax.bar(x, y, color=["#90caf9", "#f06292"]);
+        ax.bar(x, y, color=["#90caf9", "#f06292"])
         ax.set_ylabel("Berat Badan (kg)")
         ax.set_title(f"Perbandingan Berat Badan: {hasil['nama']}")
         st.pyplot(fig)
@@ -239,6 +228,9 @@ elif selected == "Saran Gizi":
             st.error("Berat anak berlebih. Kurangi makanan tinggi gula dan lemak, serta perbanyak aktivitas fisik.")
     else:
         st.warning("Silakan isi data terlebih dahulu di menu Kalkulator.")
+
+# -------------------------------
+# Halaman: Tentang
 
 # -------------------------------
 # Halaman: Tentang
