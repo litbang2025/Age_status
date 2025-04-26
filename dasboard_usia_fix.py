@@ -143,7 +143,7 @@ if selected == "Kalkulator":
     """, unsafe_allow_html=True)
 
     nama = st.text_input("👤 Nama Anak")
-    usia = st.number_input("📅 Usia Anak (tahun)", 0, 18, 5)
+    usia = st.number_input("📅 Usia Anak (tahun)", 0, 60, 5)
     jenis_kelamin = st.selectbox("⚧️ Jenis Kelamin", ["Laki-laki", "Perempuan"])
     berat = st.number_input("⚖️ Berat Badan (kg)", 0.0, 100.0, 25.0)
     tinggi = st.number_input("📏 Tinggi Badan (cm)", 0.0, 200.0, 150.0)
