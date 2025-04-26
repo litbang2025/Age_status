@@ -288,7 +288,7 @@ elif selected == "Tentang":
     
     Kami sangat menghargai setiap saran dan masukan dari Anda untuk meningkatkan aplikasi ini. Jika Anda memiliki pertanyaan atau feedback, jangan ragu untuk menghubungi kami melalui WhatsApp:
     
-    [Klik di sini untuk menghubungi kami](https://wa.me/628123456789?text=Halo%20saya%20ingin%20memberikan%20masukan%20untuk%20aplikasi%20ini.)
+    [Klik di sini untuk menghubungi kami](https://wa.me/6285640375704?text=Halo%20saya%20ingin%20memberikan%20masukan%20untuk%20aplikasi%20ini.)
     """)
 
 
